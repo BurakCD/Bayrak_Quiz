@@ -38,13 +38,10 @@ public class gameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         tasarim = DataBindingUtil.setContentView(this, R.layout.activity_game);
 
-        Log.e("game activity main","çalışıyor");
-
         sorularListe = new BayraklarDao().rastgeleBesgetir(vt);
 
         soruYukle();
 
-        Log.e("game activity main","çalışıyor2");
         tasarim.button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,48 +79,34 @@ public class gameActivity extends AppCompatActivity {
         tasarim.textCount.setText((soruSayac + 1) + ". soru");
         tasarim.textRight.setText("Doğru: "+dogruSayac);
         tasarim.textWrong.setText("Yanlış: "+yanlisSayac);
-        Log.e("Kontrol noktası","1");
         Log.e("Kontrol noktası",String.valueOf(soruSayac));
 
 
         dogruSoru = sorularListe.get(soruSayac);
-        Log.e("Kontrol noktası","2");
 
         yanlisSeceneklerListe = new BayraklarDao().rastgeleUcYanlisSecenekGetir(vt, dogruSoru.getBayrak_id());
-        Log.e("Kontrol noktası","3");
 
         tasarim.imageFlag.setImageResource(getResources().getIdentifier
                 (dogruSoru.getBayrak_resim(),"drawable",getPackageName()));
-        Log.e("Kontrol noktası","4");
 
         secenekleriKaristirmaListe.clear();
-        Log.e("Kontrol noktası","5");
 
         secenekleriKaristirmaListe.add(dogruSoru);
-        Log.e("Kontrol noktası","6");
 
         secenekleriKaristirmaListe.add(yanlisSeceneklerListe.get(0));
-        Log.e("Kontrol noktası","7");
-
         secenekleriKaristirmaListe.add(yanlisSeceneklerListe.get(1));
-        Log.e("Kontrol noktası","8");
-
         secenekleriKaristirmaListe.add(yanlisSeceneklerListe.get(2));
-        Log.e("Kontrol noktası","9");
 
         secenekler.clear();
-        Log.e("Kontrol noktası","10");
 
         for (Bayraklar b: secenekleriKaristirmaListe){
             secenekler.add(b);
         }
-        Log.e("Kontrol noktası","11");
 
         tasarim.button1.setText(secenekler.get(0).getBayrak_ad());
         tasarim.button2.setText(secenekler.get(1).getBayrak_ad());
         tasarim.button3.setText(secenekler.get(2).getBayrak_ad());
         tasarim.button4.setText(secenekler.get(3).getBayrak_ad());
-        Log.e("Kontrol noktası","12");
     }
 
     public void dogruKontrol(Button buton){

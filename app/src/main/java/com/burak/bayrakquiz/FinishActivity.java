@@ -27,7 +27,7 @@ public class FinishActivity extends AppCompatActivity {
         }
         tasarim.textFinalRight.setText("Doğru: "+finalRight);
         tasarim.textFinalWrong.setText("Yanlşı: "+finalWrong);
-        percent = (100/5)*finalRight;
+        percent = (100/(finalRight+finalWrong))*finalRight;
         tasarim.textPercent.setText("Yüzde: "+percent);
 
         tasarim.buttonPlayAgain.setOnClickListener(new View.OnClickListener() {
