@@ -6,14 +6,15 @@ import androidx.databinding.DataBindingUtil;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.burak.bayrakquiz.databinding.ActivityFinishBinding;
 
 public class FinishActivity extends AppCompatActivity {
     private ActivityFinishBinding tasarim;
-    private int finalRight = 0;
-    private int finalWrong = 0;
-    private int percent = 0;
+    private int finalRight;
+    private int finalWrong;
+    private int percent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,10 +25,12 @@ public class FinishActivity extends AppCompatActivity {
         if(bundle !=null){
             finalRight = bundle.getInt("dogruSayac");
             finalWrong = bundle.getInt("yanlisSayac");
+        }else{
+            Toast.makeText(this,"Bir hata oluştu!",Toast.LENGTH_SHORT);
         }
         tasarim.textFinalRight.setText("Doğru: "+finalRight);
         tasarim.textFinalWrong.setText("Yanlşı: "+finalWrong);
-        percent = (100/(finalRight+finalWrong))*finalRight;
+        percent = ((100/(finalRight+finalWrong))*finalRight)+10;
         tasarim.textPercent.setText("Yüzde: "+percent);
 
         tasarim.buttonPlayAgain.setOnClickListener(new View.OnClickListener() {
@@ -37,5 +40,7 @@ public class FinishActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        onBackPressed();
     }
 }
