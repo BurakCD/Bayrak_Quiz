@@ -122,7 +122,7 @@ public class gameActivity extends AppCompatActivity {
 
     public void sayacKontrol(){
         soruSayac++;
-        if(soruSayac <=4){
+        if(soruSayac <=(sorularListe.size()-1)){
             soruYukle();
         }else{
             Intent intent = new Intent(gameActivity.this,FinishActivity.class);
