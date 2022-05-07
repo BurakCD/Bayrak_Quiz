@@ -10,7 +10,7 @@ public class BayraklarDao {
     public ArrayList<Bayraklar> rastgeleBesgetir(Veritabani vt){
         ArrayList<Bayraklar> bayraklarArrayList = new ArrayList<Bayraklar>();
         SQLiteDatabase db = vt.getWritableDatabase();
-        Cursor c = db.rawQuery("SELECT * FROM bayraklar ORDER BY RANDOM()  LIMIT 5;",null);
+        Cursor c = db.rawQuery("SELECT * FROM bayraklar ORDER BY RANDOM();",null);
 
         while (c.moveToNext()){
             Bayraklar b = new Bayraklar(c.getInt(c.getColumnIndex("bayrak_id"))
